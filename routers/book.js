@@ -46,14 +46,10 @@ bookRouter.get("/booking",async (req, res) => {
 bookRouter.get("/booking/:id",async (req, res) => {
     try {
         const getID = await BookModel.findById(req.params.id);
-        if (!getID) {
-          res.status(404).json({ message: 'Product not found' });
-        } else {
-          res.json(getID);
-        }
+        
+          res.send(getID);
       } catch (error) {
-        console.error('Error retrieving product:', error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.send(error)
       }
 })
 bookRouter.put("/booking/:id", async (req, res) => {
